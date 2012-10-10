@@ -1,7 +1,0 @@
-edu.ucsb.cs.knn
-edu.ucsb.cs.knn.core
-edu.ucsb.cs.knn.hybrid
-edu.ucsb.cs.knn.inverted
-edu.ucsb.cs.knn.preprocess
-edu.ucsb.cs.knn.query
-edu.ucsb.cs.knn.types
