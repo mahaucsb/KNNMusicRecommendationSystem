@@ -8,7 +8,7 @@ knnjar=target/kddknn.jar
 $HADOOP dfs -rmr knn-input
 $HADOOP dfs -put $dataDir knn-input
 #$HADOOP jar $knnjar indexing -conf $xmlconf 
-#$HADOOP jar $knnjar hybridknn -conf $xmlconf 
+#$HADOOP jar $knnjar invertedknn -conf $xmlconf 
 
 $HADOOP dfs -rmr query
 $HADOOP dfs -put ../data/query/u1 query
