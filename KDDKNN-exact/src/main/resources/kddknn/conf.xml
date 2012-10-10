@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property>
+		<name>knn.input.dir</name>
+		<value>knn-input</value>
+	</property>
+	<property>
+		<name>knn.output.dir</name>
+		<value>knn-output</value>
+	</property>
+	<property>
+		<name>knn.sim.threshold</name>
+		<value>-1.0</value>
+	</property>
+</configuration>
