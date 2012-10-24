@@ -8,6 +8,7 @@
   <property name="jar.dir" value="${build.dir}" />
   <property name="jar.file" value="${ant.project.name}.jar" />
   <property name="main.class" value="edu.ucsb.cs.knn.KnnDriver" />
+  <property name="test.script" value="run.sh" />
   <path id="classpath">
     <fileset dir="" id="lib">
       <include name="lib/*" />
@@ -22,23 +23,23 @@
     <include name="**" />
     <exclude name="" />
   </fileset>
-  <!-- ================================= 
-       target: clean              
+  <!-- =================================
+       target: clean
        ================================= -->
   <target name="clean" depends="" description="">
     <delete dir="${build.dir}" />
   </target>
-  <!-- ================================= 
-       target: compile              
+  <!-- =================================
+       target: compile
        ================================= -->
   <target name="compile" depends="" description="">
     <mkdir dir="${classes.dir}" />
-    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" target="1.6" debug="true" includeantruntime="false">
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" debug="true" includeantruntime="false">
       <include name="**/*.java"/>
     </javac>
   </target>
-  <!-- ================================= 
-       target: jar              
+  <!-- =================================
+       target: jar
        ================================= -->
   <target name="jar" depends="compile" description="">
     <mkdir dir="${jar.dir}" />
@@ -50,12 +51,8 @@
       </manifest>
     </jar>
   </target>
-  <!-- ================================= 
-       target: build             
+  <!-- =================================
+       target: build
        ================================= -->
   <target name="build" depends="jar" description="" />
-  <!-- ================================= 
-       target: main              
-       ================================= -->
-  <target name="main" depends="clean,jar" description="" />
 </project>
