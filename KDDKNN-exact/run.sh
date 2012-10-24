@@ -31,6 +31,8 @@ HADOOP=/home/ninj0x/Downloads/hadoop-0.20.2/bin/hadoop
 xmlconf=src/main/resources/kddknn/conf.xml
 knnjar=target/kddknn.jar
 
+
+## Start run script ##
 clean() {
 	$HADOOP dfs -rmr sinvertedindex
 	$HADOOP dfs -rmr knn-output
@@ -51,6 +53,7 @@ fi
 # Build from source.
 ant build
 clean
+
 $HADOOP dfs -put $dataDir knn-input
 $HADOOP jar $knnjar invindex -conf $xmlconf
 $HADOOP jar $knnjar invertedknn -conf $xmlconf
