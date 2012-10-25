@@ -10,6 +10,6 @@
 	</property>
 	<property>
 		<name>knn.sim.threshold</name>
-		<value>-1.0</value>
+		<value>0.9</value>
 	</property>
 </configuration>
