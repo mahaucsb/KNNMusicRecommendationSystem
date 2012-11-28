@@ -4,10 +4,10 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapred.JobConf;
-import org.apache.hadoop.mapred.MapFileOutputFormat;
+import org.apache.hadoop.mapred.SequenceFileOutputFormat;
 import org.apache.hadoop.mapred.SequenceFileInputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
-
+import org.apache.hadoop.io.ArrayFile;
 import edu.ucsb.cs.knn.KnnDriver;
 import edu.ucsb.cs.knn.types.NeighboursArrayWritable;
 
@@ -45,8 +45,8 @@ public class InvertedMain {// extends Configured implements Tool {
 		// FileOutputFormat.setOutputPath(job, outputPath);
 		FileSystem.get(job).delete(outputPath, true);
 
-		job.setOutputFormat(MapFileOutputFormat.class);
-		MapFileOutputFormat.setOutputPath(job, outputPath);
+		job.setOutputFormat(SequenceFileOutputFormat.class);
+		SequenceFileOutputFormat.setOutputPath(job, outputPath);
 
 		KnnDriver.run(job);
 	}

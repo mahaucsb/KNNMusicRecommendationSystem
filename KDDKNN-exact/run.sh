@@ -24,10 +24,18 @@
 # hjar target/kddknn.jar readseq <part-0000>
 #############################################
 
+# Commands:
+CLEAN="clean"
+LOAD="load"
+INVERT="invert"
+KNN="knn"
+QUERY="query"
+
+
 dataDir=/home/yahooData/ydata-ymusic-kddcup-2011-track1/trainIdx1.txt
 queryFile=../data/query/u1
 #JAVA_HOME=/usr/lib/jvm/jdk1.7.0
-HADOOP=/home/karl/hadoop/hadoop-0.20.2/bin/hadoop
+HADOOP=$HADOOP/bin/hadoop
 xmlconf=src/main/resources/kddknn/conf.xml
 knnjar=target/kddknn.jar
 
@@ -40,23 +48,41 @@ clean() {
 	$HADOOP dfs -rmr query
 }
 
-#if [[ -n $JAVA_HOME ]]; then
-#	export JAVA_HOME
-#fi
+load() {
+  $HADOOP dfs -put $dataDir knn-input
+}
 
-if [[ $1 = "clean" ]]; then
+invert() {
+  $HADOOP jar $knnjar invindex -conf $xmlconf
+}
+
+knn() {
+  $HADOOP jar $knnjar invertedknn -conf $xmlconf
+}
+
+if [[ $1 = $CLEAN ]]; then
 	clean
 	ant clean
 	exit
 fi
 
+if [[ $1 = $LOAD ]]; then
+	load
+	exit
+fi
+
 # Build from source.
 ant build
-clean
 
-#$HADOOP dfs -put $dataDir knn-input
-$HADOOP jar $knnjar invindex -conf $xmlconf
-#$HADOOP jar $knnjar invertedknn -conf $xmlconf
+if [[ $1 = $INVERT ]]; then
+	invert
+	exit
+fi
+
+if [[ $1 = $KNN ]]; then
+    knn
+	exit
+fi
 
 #$HADOOP dfs -put $queryFile query
 #$HADOOP jar $knnjar queryknn -conf $xmlconf
